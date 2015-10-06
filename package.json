@@ -1,0 +1,16 @@
+{
+  "name": "gramene-mongodb-config",
+  "version": "1.0.0",
+  "description": "Javascript module with configuration settings for Gramene's mongodb collections",
+  "main": "collections.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github:warelab/gramene-mongodb-config.git"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "author": "ajo2995",
+  "license": "MIT"
+}
