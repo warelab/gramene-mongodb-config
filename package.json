@@ -7,9 +7,11 @@
     "type": "git",
     "url": "git@github:warelab/gramene-mongodb-config.git"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
+    "lodash": "^3.10.1",
+    "mongodb": "^1.4.7",
+    "q": "^1.4.1"
   },
   "author": "ajo2995",
   "license": "MIT"
