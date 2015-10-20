@@ -4,7 +4,7 @@ var _ = require('lodash');
 
 var host = 'brie.cshl.edu'
   , port = 27017
-  , dbVersion = 46;
+  , dbVersion = '48';
 
 var collections = {
   genes: {
