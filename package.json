@@ -1,6 +1,6 @@
 {
   "name": "gramene-mongodb-config",
-  "version": "0.48.0",
+  "version": "1.48.0",
   "description": "Javascript module with configuration settings for Gramene's mongodb collections",
   "main": "collections.js",
   "repository": {
