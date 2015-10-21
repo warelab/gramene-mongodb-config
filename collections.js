@@ -4,55 +4,56 @@ var _ = require('lodash');
 
 var host = 'brie.cshl.edu'
   , port = 27017
+  , dbName = dbName
   , dbVersion = '48';
 
 var collections = {
   genes: {
     host: host,
     port: port,
-    dbName: 'search' + dbVersion,
+    dbName: dbName + dbVersion,
     collectionName: 'genes',
     description: 'gramene genes'
   },
   genetrees: {
     host: host,
     port: port,
-    dbName: 'search' + dbVersion,
+    dbName: dbName + dbVersion,
     collectionName: 'genetree',
     description: 'compara gene trees'
   },
   GO: {
     host: host,
     port: port,
-    dbName: 'ontology' + dbVersion,
+    dbName: dbName + dbVersion,
     collectionName: 'GO',
     description: 'gene ontology terms'
   },
   PO: {
     host: host,
     port: port,
-    dbName: 'ontology' + dbVersion,
+    dbName: dbName + dbVersion,
     collectionName: 'PO',
     description: 'plant ontology terms'
   },
   taxonomy: {
     host: host,
     port: port,
-    dbName: 'ontology' + dbVersion,
+    dbName: dbName + dbVersion,
     collectionName: 'NCBITaxon',
     description: 'NCBI taxonomy (pruned to cover gramene species)'
   },
   domains: {
     host: host,
     port: port,
-    dbName: 'ontology' + dbVersion,
+    dbName: dbName + dbVersion,
     collectionName: 'interpro',
     description: 'intepro domains'
   },
   maps: {
     host: host,
     port: port,
-    dbName: 'search' + dbVersion,
+    dbName: dbName + dbVersion,
     collectionName: 'maps',
     description: 'maps genomes, genetic maps, and physical maps'
   }
