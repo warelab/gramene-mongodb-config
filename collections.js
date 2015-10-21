@@ -87,8 +87,10 @@ _.forEach(collections, function (collection) {
 });
 
 Object.getPrototypeOf(collections).closeDatabases = function() {
-  _.forEach(databases, function(db) {
-    db.close();
+  _.forEach(databases, function(dbPromise) {
+    dbPromise.then(function(db) {
+      db.close();
+    });
   });
 
   databases = {};
