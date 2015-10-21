@@ -47,8 +47,15 @@ var collections = {
     host: host,
     port: port,
     dbName: dbName + dbVersion,
-    collectionName: 'interpro',
+    collectionName: 'domains',
     description: 'intepro domains'
+  },
+  pathways: {
+    host: host,
+    port: port,
+    dbName: dbName + dbVersion,
+    collectionName: 'pathways',
+    description: 'plant reactome pathways and reactions'
   },
   maps: {
     host: host,
@@ -59,8 +66,10 @@ var collections = {
   }
 };
 
+var databases = {};
+
 // setup mongodb collection connections
-_.inject(collections, function (databases, collection) {
+_.forEach(collections, function (collection) {
   var MongoClient = require('mongodb').MongoClient;
   var Q = require('q');
 
@@ -75,7 +84,14 @@ _.inject(collections, function (databases, collection) {
       return db.collection(collection.collectionName);
     });
   };
-  return databases;
-}, {});
+});
+
+Object.getPrototypeOf(collections).closeDatabases = function() {
+  _.forEach(databases, function(db) {
+    db.close();
+  });
+
+  databases = {};
+};
 
 module.exports = collections;
