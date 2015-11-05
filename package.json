@@ -10,7 +10,7 @@
   "devDependencies": {},
   "dependencies": {
     "lodash": "^3.10.1",
-    "mongodb": "^1.4.7",
+    "mongodb": "~2.0",
     "q": "^1.4.1"
   },
   "author": "ajo2995",
