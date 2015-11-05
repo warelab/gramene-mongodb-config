@@ -33,6 +33,14 @@ Collections.prototype.closeMongoDatabase = function () {
   });
 };
 
+Collections.prototype.getMongoConfig = function () {
+  return {
+    host: host,
+    port: port,
+    db: dbName + dbVersion 
+  };
+};
+
 var collections = new Collections({
   genes: {
     collectionName: 'genes',
