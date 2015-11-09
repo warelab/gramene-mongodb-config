@@ -37,6 +37,7 @@ Collections.prototype.getMongoConfig = function () {
   return {
     host: host,
     port: port,
+    version: dbVersion,
     db: dbName + dbVersion 
   };
 };
