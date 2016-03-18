@@ -51,6 +51,10 @@ var collections = new Collections({
     collectionName: 'genetree',
     description: 'compara gene trees'
   },
+  speciestrees: {
+    collectionName: 'speciestree',
+    description: 'compara species trees'
+  },
   GO: {
     collectionName: 'GO',
     description: 'gene ontology terms'
