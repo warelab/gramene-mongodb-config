@@ -7,7 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'brie.cshl.edu'
   , port = 27017
   , dbName = 'search'
-  , dbVersion = '52'
+  , dbVersion = '53'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
