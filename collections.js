@@ -77,6 +77,10 @@ var collections = new Collections({
   },
   expression: {
     collectionName: 'expression',
+    description: 'EBI Atlas expression data - metadata'
+  },
+  atlas: {
+    collectionName: 'atlas',
     description: 'EBI Atlas expression data'
   }
 });
