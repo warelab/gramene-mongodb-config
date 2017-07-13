@@ -75,12 +75,16 @@ var collections = new Collections({
     collectionName: 'maps',
     description: 'maps genomes, genetic maps, and physical maps'
   },
+  experiments: {
+    collectionName: 'experiments',
+    description: 'EBI Atlas experiments'
+  },
+  assays: {
+    collectionName: 'assays',
+    description: 'EBI Atlas assays'
+  },
   expression: {
     collectionName: 'expression',
-    description: 'EBI Atlas expression data - metadata'
-  },
-  atlas: {
-    collectionName: 'atlas',
     description: 'EBI Atlas expression data'
   }
 });
