@@ -44,7 +44,7 @@ Collections.prototype.getMongoConfig = function () {
 
 var collections = new Collections({
   genes: {
-    collectionName: 'genes',
+    collectionName: 'genes_update',
     description: 'gramene genes'
   },
   genetrees: {
@@ -68,7 +68,7 @@ var collections = new Collections({
     description: 'intepro domains'
   },
   pathways: {
-    collectionName: 'pathways',
+    collectionName: 'pathways_update',
     description: 'plant reactome pathways and reactions'
   },
   maps: {
