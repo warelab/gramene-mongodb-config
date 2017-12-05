@@ -7,7 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'brie.cshl.edu'
   , port = 27017
   , dbName = 'search'
-  , dbVersion = '55'
+  , dbVersion = '56'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
@@ -44,7 +44,7 @@ Collections.prototype.getMongoConfig = function () {
 
 var collections = new Collections({
   genes: {
-    collectionName: 'genes_update',
+    collectionName: 'genes',
     description: 'gramene genes'
   },
   genetrees: {
@@ -68,7 +68,7 @@ var collections = new Collections({
     description: 'intepro domains'
   },
   pathways: {
-    collectionName: 'pathways_update',
+    collectionName: 'pathways',
     description: 'plant reactome pathways and reactions'
   },
   maps: {
