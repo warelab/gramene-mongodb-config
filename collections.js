@@ -44,11 +44,11 @@ Collections.prototype.getMongoConfig = function () {
 
 var collections = new Collections({
   genes: {
-    collectionName: 'genes',
+    collectionName: 'genes_a',
     description: 'gramene genes'
   },
   genetrees: {
-    collectionName: 'genetree',
+    collectionName: 'genetree_a',
     description: 'compara gene trees'
   },
   GO: {
