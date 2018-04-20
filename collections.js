@@ -33,6 +33,10 @@ Collections.prototype.closeMongoDatabase = function () {
   });
 };
 
+Collections.prototype.getVersion = function () {
+  return dbVersion;
+};
+
 Collections.prototype.getMongoConfig = function () {
   return {
     host: host,
