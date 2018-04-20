@@ -7,7 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'brie.cshl.edu'
   , port = 27017
   , dbName = 'search'
-  , dbVersion = '56'
+  , dbVersion = '57'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
@@ -44,11 +44,11 @@ Collections.prototype.getMongoConfig = function () {
 
 var collections = new Collections({
   genes: {
-    collectionName: 'genes_a',
+    collectionName: 'genes',
     description: 'gramene genes'
   },
   genetrees: {
-    collectionName: 'genetree_a',
+    collectionName: 'genetree',
     description: 'compara gene trees'
   },
   GO: {
