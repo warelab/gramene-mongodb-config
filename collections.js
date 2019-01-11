@@ -7,7 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'brie.cshl.edu'
   , port = 27017
   , dbName = 'search'
-  , dbVersion = '51'
+  , dbVersion = '59'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
@@ -31,6 +31,10 @@ Collections.prototype.closeMongoDatabase = function () {
   databasePromise.then(function (db) {
     db.close();
   });
+};
+
+Collections.prototype.getVersion = function () {
+  return dbVersion;
 };
 
 Collections.prototype.getMongoConfig = function () {
@@ -74,6 +78,18 @@ var collections = new Collections({
   maps: {
     collectionName: 'maps',
     description: 'maps genomes, genetic maps, and physical maps'
+  },
+  experiments: {
+    collectionName: 'experiments',
+    description: 'EBI Atlas experiments'
+  },
+  assays: {
+    collectionName: 'assays',
+    description: 'EBI Atlas assays'
+  },
+  expression: {
+    collectionName: 'expression',
+    description: 'EBI Atlas expression data'
   }
 });
 
