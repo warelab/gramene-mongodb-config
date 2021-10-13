@@ -18,8 +18,9 @@ function Collections(collections) {
   // add mongoCollection function to each.
   _.forOwn(collections, function (collection) {
     collection.mongoCollection = function() {
-      return databasePromise.then(function (db) {
-        return db.collection(collection.collectionName);
+      return databasePromise.then(function (client) {
+	const db = client.db(dbName + dbVersion);
+	return db.collection(collection.collectionName);
       }).catch(function(err) {
         console.log(err);
       });
