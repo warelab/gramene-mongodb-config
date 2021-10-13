@@ -9,8 +9,8 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "lodash": "^3.10.1",
-    "mongodb": "^2.2.29",
+    "lodash": "^4.17.21",
+    "mongodb": "^4.1.3",
     "q": "^1.4.1"
   },
   "author": "ajo2995",
