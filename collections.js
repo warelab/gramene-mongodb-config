@@ -4,10 +4,10 @@ var _ = require('lodash');
 var Q = require('q');
 var MongoClient = require('mongodb').MongoClient;
 
-var host = 'brie.cshl.edu'
+var host = 'squam.cshl.edu'
   , port = 27017
-  , dbName = 'search'
-  , dbVersion = '59'
+  , dbName = 'uncc_test'
+  , dbVersion = '1'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
