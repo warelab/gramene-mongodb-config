@@ -4,7 +4,7 @@ var _ = require('lodash');
 var Q = require('q');
 var MongoClient = require('mongodb').MongoClient;
 
-var host = 'brie.cshl.edu'
+var host = 'localhost'
   , port = 27017
   , dbName = 'search'
   , dbVersion = '66'
