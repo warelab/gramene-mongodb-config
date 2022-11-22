@@ -63,6 +63,10 @@ var collections = new Collections({
     collectionName: 'PO',
     description: 'plant ontology terms'
   },
+  TO: {
+    collectionName: 'TO',
+    description: 'trait ontology terms'
+  },
   taxonomy: {
     collectionName: 'taxonomy',
     description: 'NCBI taxonomy (pruned to cover gramene species)'
