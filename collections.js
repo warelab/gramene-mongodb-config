@@ -83,6 +83,10 @@ var collections = new Collections({
     collectionName: 'maps',
     description: 'maps genomes, genetic maps, and physical maps'
   },
+  qtls: {
+    collectionName: 'qtls',
+    description: 'Quantitative Trait Loci'
+  }
   experiments: {
     collectionName: 'experiments',
     description: 'EBI Atlas experiments'
