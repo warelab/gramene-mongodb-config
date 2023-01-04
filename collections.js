@@ -7,7 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'localhost'
   , port = 27017
   , dbName = 'oryza'
-  , dbVersion = '4'
+  , dbVersion = '5.1'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
@@ -62,6 +62,14 @@ var collections = new Collections({
   PO: {
     collectionName: 'PO',
     description: 'plant ontology terms'
+  },
+  TO: {
+    collectionName: 'TO',
+    description: 'trait ontology terms'
+  },
+  qtls: {
+    collectionName: 'qtls',
+    description: 'qtls'
   },
   taxonomy: {
     collectionName: 'taxonomy',
