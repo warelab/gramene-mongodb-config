@@ -7,7 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'localhost'
   , port = 27017
   , dbName = 'search'
-  , dbVersion = '67'
+  , dbVersion = '68'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
