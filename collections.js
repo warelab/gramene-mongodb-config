@@ -7,7 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'localhost'
   , port = 27017
   , dbName = 'oryza'
-  , dbVersion = '7'
+  , dbVersion = '8'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
@@ -98,6 +98,10 @@ var collections = new Collections({
   expression: {
     collectionName: 'expression',
     description: 'EBI Atlas expression data'
+  },
+  germplasm: {
+    collectionName: 'germplasm',
+    description: 'germplasm metadata'
   }
 });
 
