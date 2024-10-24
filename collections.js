@@ -7,9 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'localhost'
   , port = 27017
   , dbName = 'sorghum'
-  , dbVersion = '8'
-  , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
-  , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
+  , dbVersion = '8';
 
 function Collections(collections) {
   // copy all the properties to this object
@@ -17,7 +15,12 @@ function Collections(collections) {
 
   // add mongoCollection function to each.
   _.forOwn(collections, function (collection) {
+    collection.dbName ||= dbName;
+    collection.dbVersion ||= dbVersion;
     collection.mongoCollection = function() {
+      var rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + collection.dbName + collection.dbVersion
+      var databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
+
       return databasePromise.then(function (db) {
         return db.collection(collection.collectionName);
       }).catch(function(err) {
@@ -47,6 +50,12 @@ Collections.prototype.getMongoConfig = function () {
 };
 
 var collections = new Collections({
+  genelists: {
+    collectionName: 'genelists',
+    description: 'saved lists of genes',
+    dbName: 'userData',
+    dbVersion: '1'
+  },
   genes: {
     collectionName: 'genes',
     description: 'gramene genes'
