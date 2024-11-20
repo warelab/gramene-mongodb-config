@@ -7,7 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'localhost'
   , port = 27017
   , dbName = 'sorghum'
-  , dbVersion = '8';
+  , dbVersion = '9';
 
 function Collections(collections) {
   // copy all the properties to this object
