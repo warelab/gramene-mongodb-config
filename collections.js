@@ -8,7 +8,7 @@ var host = 'localhost'
   , port = 27017
   , dbName = 'maize'
   , dbVersion = '5';
-
+var dbPromises = {};
 function Collections(collections) {
   // copy all the properties to this object
   _.assign(this, collections);
@@ -18,10 +18,11 @@ function Collections(collections) {
     collection.dbName ||= dbName;
     collection.dbVersion ||= dbVersion;
     collection.mongoCollection = function() {
-      var rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + collection.dbName + collection.dbVersion
-      var databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
-
-      return databasePromise.then(function (db) {
+      var rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + collection.dbName + collection.dbVersion;
+      if (!dbPromises[rootMongoUrl]) {
+        dbPromises[rootMongoUrl] = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
+      }
+      return dbPromises[rootMongoUrl].then(function (db) {
         return db.collection(collection.collectionName);
       }).catch(function(err) {
         console.log(err);
@@ -31,9 +32,11 @@ function Collections(collections) {
 }
 
 Collections.prototype.closeMongoDatabase = function () {
-  databasePromise.then(function (db) {
-    db.close();
-  });
+  for(const [key, promise] of Object.entries(dbPromises)) {
+    promise.then(function(db) {
+      db.close();
+    })
+  }
 };
 
 Collections.prototype.getVersion = function () {
@@ -98,15 +101,21 @@ var collections = new Collections({
   },
   experiments: {
     collectionName: 'experiments',
-    description: 'EBI Atlas experiments'
+    description: 'EBI Atlas experiments',
+    dbName: 'atlas',
+    dbVersion: '1'
   },
   assays: {
     collectionName: 'assays',
-    description: 'EBI Atlas assays'
+    description: 'EBI Atlas assays',
+    dbName: 'atlas',
+    dbVersion: '1'
   },
   expression: {
     collectionName: 'expression',
-    description: 'EBI Atlas expression data'
+    description: 'EBI Atlas expression data',
+    dbName: 'atlas',
+    dbVersion: '1'
   },
   germplasm: {
     collectionName: 'germplasm',
