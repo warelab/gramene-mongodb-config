@@ -6,8 +6,8 @@ var MongoClient = require('mongodb').MongoClient;
 
 var host = 'localhost'
   , port = 27017
-  , dbName = 'maize'
-  , dbVersion = '5';
+  , dbName = 'search'
+  , dbVersion = '69';
 var dbPromises = {};
 function Collections(collections) {
   // copy all the properties to this object
@@ -119,7 +119,9 @@ var collections = new Collections({
   },
   germplasm: {
     collectionName: 'germplasm',
-    description: 'germplasm metadata'
+    description: 'germplasm metadata',
+    dbName: 'germplasm',
+    dbVersion: '1'
   }
 });
 
