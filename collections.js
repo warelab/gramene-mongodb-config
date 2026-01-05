@@ -6,8 +6,8 @@ var MongoClient = require('mongodb').MongoClient;
 
 var host = 'localhost'
   , port = 27017
-  , dbName = 'oryza'
-  , dbVersion = '7'
+  , dbName = 'sorghum'
+  , dbVersion = '10'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
@@ -54,6 +54,10 @@ var collections = new Collections({
   genetrees: {
     collectionName: 'genetree',
     description: 'compara gene trees'
+  },
+  germplasm: {
+    collectionName: 'germplasm',
+    description: 'germplasm'
   },
   GO: {
     collectionName: 'GO',
