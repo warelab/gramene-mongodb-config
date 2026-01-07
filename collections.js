@@ -47,6 +47,12 @@ Collections.prototype.getMongoConfig = function () {
 };
 
 var collections = new Collections({
+  genelists: {
+    collectionName: 'genelists',
+    description: 'saved lists of genes',
+    dbName: 'userData',
+    dbVersion: '1'
+  },
   genes: {
     collectionName: 'genes',
     description: 'gramene genes'
@@ -93,11 +99,15 @@ var collections = new Collections({
   },
   experiments: {
     collectionName: 'experiments',
-    description: 'EBI Atlas experiments'
+    description: 'EBI Atlas experiments',
+    dbName: 'atlas',
+    dbVersion: '2'
   },
   assays: {
     collectionName: 'assays',
-    description: 'EBI Atlas assays'
+    description: 'EBI Atlas assays',
+    dbName: 'atlas',
+    dbVersion: '2'
   },
   expression: {
     collectionName: 'expression',
