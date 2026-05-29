@@ -4,7 +4,7 @@ var _ = require('lodash');
 var Q = require('q');
 var MongoClient = require('mongodb').MongoClient;
 
-var host = 'localhost'
+var host = 'squam'
   , port = 27017
   , dbName = 'sorghum'
   , dbVersion = '10'
@@ -50,6 +50,12 @@ var collections = new Collections({
   genelists: {
     collectionName: 'genelists',
     description: 'saved lists of genes',
+    dbName: 'userData',
+    dbVersion: '1'
+  },
+  savedviews: {
+    collectionName: 'savedviews',
+    description: 'saved gene-search UI snapshots (filters, views, expanded details)',
     dbName: 'userData',
     dbVersion: '1'
   },
@@ -99,15 +105,11 @@ var collections = new Collections({
   },
   experiments: {
     collectionName: 'experiments',
-    description: 'EBI Atlas experiments',
-    dbName: 'atlas',
-    dbVersion: '2'
+    description: 'EBI Atlas experiments'
   },
   assays: {
     collectionName: 'assays',
-    description: 'EBI Atlas assays',
-    dbName: 'atlas',
-    dbVersion: '2'
+    description: 'EBI Atlas assays'
   },
   expression: {
     collectionName: 'expression',
