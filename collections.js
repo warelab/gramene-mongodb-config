@@ -6,8 +6,8 @@ var MongoClient = require('mongodb').MongoClient;
 
 var host = 'localhost'
   , port = 27017
-  , dbName = 'oryza'
-  , dbVersion = '7'
+  , dbName = 'sorghum'
+  , dbVersion = '11'
   , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
   , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
 
@@ -55,6 +55,10 @@ var collections = new Collections({
     collectionName: 'genetree',
     description: 'compara gene trees'
   },
+  germplasm: {
+    collectionName: 'germplasm',
+    description: 'germplasm accessions / stocks'
+  },
   GO: {
     collectionName: 'GO',
     description: 'gene ontology terms'
@@ -98,6 +102,10 @@ var collections = new Collections({
   expression: {
     collectionName: 'expression',
     description: 'EBI Atlas expression data'
+  },
+  expression_attributes: {
+    collectionName: 'expression_attributes',
+    description: 'per-gene expression summary attributes (specificity/enhancement/breadth)'
   }
 });
 
