@@ -101,21 +101,15 @@ var collections = new Collections({
   },
   experiments: {
     collectionName: 'experiments',
-    description: 'EBI Atlas experiments',
-    dbName: 'atlas',
-    dbVersion: '1'
+    description: 'EBI Atlas experiments'
   },
   assays: {
     collectionName: 'assays',
-    description: 'EBI Atlas assays',
-    dbName: 'atlas',
-    dbVersion: '1'
+    description: 'EBI Atlas assays'
   },
   expression: {
     collectionName: 'expression',
-    description: 'EBI Atlas expression data',
-    dbName: 'atlas',
-    dbVersion: '1'
+    description: 'EBI Atlas expression data'
   },
   germplasm: {
     collectionName: 'germplasm',
