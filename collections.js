@@ -106,6 +106,10 @@ var collections = new Collections({
   expression_attributes: {
     collectionName: 'expression_attributes',
     description: 'per-gene expression summary attributes (specificity/enhancement/breadth)'
+  },
+  genelists: {
+    collectionName: 'genelists',
+    description: 'saved lists of genes (user data)'
   }
 });
 
