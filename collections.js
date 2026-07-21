@@ -7,18 +7,28 @@ var MongoClient = require('mongodb').MongoClient;
 var host = 'squam'
   , port = 27017
   , dbName = 'sorghum'
-  , dbVersion = '10'
-  , rootMongoUrl = 'mongodb://' + host + ':' + port + '/' + dbName + dbVersion
-  , databasePromise = Q.ninvoke(MongoClient, "connect", rootMongoUrl);
+  , dbVersion = '10';
+// One connection promise per distinct mongo URL (lazy), so a collection MAY override dbName/
+// dbVersion to live in a db shared across every site/version build (genelists + savedviews ->
+// userData1). Previously every collection collapsed onto the default db (sorghum10), so lists
+// saved on this site were invisible to other releases (which read userData1).
+var dbPromises = {};
 
 function Collections(collections) {
   // copy all the properties to this object
   _.assign(this, collections);
 
-  // add mongoCollection function to each.
+  // add mongoCollection function to each. A collection without an explicit dbName/dbVersion falls
+  // back to this build's default db.
   _.forOwn(collections, function (collection) {
+    collection.dbName = collection.dbName || dbName;
+    collection.dbVersion = collection.dbVersion || dbVersion;
     collection.mongoCollection = function() {
-      return databasePromise.then(function (db) {
+      var url = 'mongodb://' + host + ':' + port + '/' + collection.dbName + collection.dbVersion;
+      if (!dbPromises[url]) {
+        dbPromises[url] = Q.ninvoke(MongoClient, "connect", url);
+      }
+      return dbPromises[url].then(function (db) {
         return db.collection(collection.collectionName);
       }).catch(function(err) {
         console.log(err);
@@ -28,8 +38,8 @@ function Collections(collections) {
 }
 
 Collections.prototype.closeMongoDatabase = function () {
-  databasePromise.then(function (db) {
-    db.close();
+  Object.keys(dbPromises).forEach(function (url) {
+    dbPromises[url].then(function (db) { db.close(); });
   });
 };
 
