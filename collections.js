@@ -59,6 +59,12 @@ var collections = new Collections({
     dbName: 'userData',
     dbVersion: '1'
   },
+  savedviews: {
+    collectionName: 'savedviews',
+    description: 'saved gene-search UI snapshots (filters, views, expanded details)',
+    dbName: 'userData',
+    dbVersion: '1'
+  },
   genes: {
     collectionName: 'genes',
     description: 'gramene genes'
