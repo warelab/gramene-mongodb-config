@@ -4,12 +4,14 @@ var _ = require('lodash');
 var Q = require('q');
 var MongoClient = require('mongodb').MongoClient;
 
-// dbName/dbVersion are the DEFAULT db for this build/version (sorghum11 here; a gramene-plants-70
+// dbName/dbVersion are the DEFAULT db for this build/version (sorghum10b here; a gramene-plants-70
 // build sets them to search/70 -> search70). They are NOT hardcoded semantics — just the fallback.
+// NOTE: "10b" is a re-tag of the v11-pipeline build over v10 data, done while the real v11 data
+// update was in flight; it is intentionally non-numeric so it never collides with sorghum11.
 var host = 'localhost'
   , port = 27017
   , dbName = 'sorghum'
-  , dbVersion = '11';
+  , dbVersion = '10b';
 // one connection promise per distinct mongo URL (lazy), so a collection can live in a different db.
 var dbPromises = {};
 
