@@ -124,6 +124,12 @@ var collections = new Collections({
     description: 'saved lists of genes (user data)',
     dbName: 'userData',
     dbVersion: '1'
+  },
+  savedviews: {
+    collectionName: 'savedviews',
+    description: 'saved gene-search UI snapshots (filters, views, expanded details)',
+    dbName: 'userData',
+    dbVersion: '1'
   }
 });
 
