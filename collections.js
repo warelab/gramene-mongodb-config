@@ -71,6 +71,10 @@ var collections = new Collections({
     collectionName: 'germplasm',
     description: 'germplasm accessions / stocks'
   },
+  homologs: {
+    collectionName: 'homologs',
+    description: 'per-gene compara homologs: {_id: gene stable_id, homologous_genes: {kind: [stable_id]}}'
+  },
   GO: {
     collectionName: 'GO',
     description: 'gene ontology terms'
