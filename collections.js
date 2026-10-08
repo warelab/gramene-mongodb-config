@@ -73,6 +73,10 @@ var collections = new Collections({
     collectionName: 'genetree',
     description: 'compara gene trees'
   },
+  homologs: {
+    collectionName: 'homologs',
+    description: 'per-gene compara homologs: {_id: gene stable_id, homologous_genes: {kind: [stable_id]}}'
+  },
   GO: {
     collectionName: 'GO',
     description: 'gene ontology terms'
@@ -116,6 +120,10 @@ var collections = new Collections({
   expression: {
     collectionName: 'expression',
     description: 'EBI Atlas expression data'
+  },
+  expression_attributes: {
+    collectionName: 'expression_attributes',
+    description: 'per-gene expression summary attributes (specificity/enhancement/breadth)'
   },
   germplasm: {
     collectionName: 'germplasm',
