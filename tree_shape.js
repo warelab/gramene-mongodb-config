@@ -144,5 +144,42 @@ function maxDepth(nested) {
   return best;
 }
 
-module.exports = { fromNested: fromNested, toNested: toNested,
+// Gate helper for the other direction: a STORED flat document -> nested -> flat again, compared
+// against what is stored. The diagnostics the writer adds (n_nodes, max_depth) are deliberately
+// not part of the conversion, so they are compared separately for integrity rather than by
+// equality -- which is why roundTripDiff() cannot simply be pointed at a stored document.
+// Returns null when consistent, else a description of the first problem.
+function storedRoundTripDiff(stored) {
+  if (!stored || !stored.nodes) { return 'not a flat document (no nodes array)'; }
+  var nested, reflat;
+  try { nested = toNested(stored); } catch (e) { return 'toNested threw: ' + e.message; }
+  try { reflat = fromNested(nested); } catch (e) { return 'fromNested threw: ' + e.message; }
+
+  if (reflat.nodes.length !== stored.nodes.length) {
+    return 'node count ' + reflat.nodes.length + ' vs stored ' + stored.nodes.length;
+  }
+  if (JSON.stringify(reflat.nodes) !== JSON.stringify(stored.nodes)) {
+    for (var i = 0; i < stored.nodes.length; i++) {
+      if (JSON.stringify(reflat.nodes[i]) !== JSON.stringify(stored.nodes[i])) {
+        return 'node[' + i + '] (node_id ' + stored.nodes[i].node_id + ') differs after a round trip';
+      }
+    }
+    return 'nodes differ after a round trip';
+  }
+  for (var t = 0; t < TOP_LEVEL.length; t++) {
+    var k = TOP_LEVEL[t];
+    if (JSON.stringify(reflat[k]) !== JSON.stringify(stored[k])) {
+      return 'top-level ' + k + ': ' + JSON.stringify(reflat[k]) + ' vs ' + JSON.stringify(stored[k]);
+    }
+  }
+  if (stored.n_nodes !== undefined && stored.n_nodes !== stored.nodes.length) {
+    return 'n_nodes says ' + stored.n_nodes + ' but there are ' + stored.nodes.length + ' nodes';
+  }
+  if (stored.max_depth !== undefined && stored.max_depth !== maxDepth(nested)) {
+    return 'max_depth says ' + stored.max_depth + ' but the tree is ' + maxDepth(nested) + ' deep';
+  }
+  return null;
+}
+
+module.exports = { fromNested: fromNested, toNested: toNested, storedRoundTripDiff: storedRoundTripDiff,
                    roundTripDiff: roundTripDiff, maxDepth: maxDepth, TOP_LEVEL: TOP_LEVEL };
