@@ -6,8 +6,8 @@ var MongoClient = require('mongodb').MongoClient;
 
 var host = 'localhost'
   , port = 27017
-  , dbName = 'search'
-  , dbVersion = '70';
+  , dbName = 'grapevine'
+  , dbVersion = '5';
 var dbPromises = {};
 function Collections(collections) {
   // copy all the properties to this object
