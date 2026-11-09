@@ -127,9 +127,13 @@ var collections = new Collections({
   },
   germplasm: {
     collectionName: 'germplasm',
-    description: 'germplasm metadata',
-    dbName: 'germplasm',
-    dbVersion: '1'
+    // NO dbName/dbVersion override. main_v70 added `dbName:'germplasm', dbVersion:'1'`,
+    // pointing every consumer at a database `germplasm1` that does not exist on this host --
+    // so /germplasm answered [] while 10,797 docs sat in maize6.germplasm, where
+    // stages/22_germplasm.sh puts them. germplasm is per-site data and belongs in the site db,
+    // as maize v5, sorghum v11 and oryza v9 all have it. release70 and grapevine v5 carry the
+    // same broken override and simply have no germplasm data to expose it.
+    description: 'germplasm metadata'
   }
 });
 
